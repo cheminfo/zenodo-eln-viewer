@@ -6,7 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const VENDOR_LIBS = [
     'react', 'react-dom', 'react-redux', 'react-router-dom', 'react-table',
-    'redux', 'redux-promise-middleware', 'redux-thunk', 'superagent'
+    'redux', 'redux-actions', 'redux-promise-middleware', 'redux-thunk',
+    'superagent'
 ];
 
 const plugins = [

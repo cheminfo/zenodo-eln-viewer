@@ -6,6 +6,7 @@ import promiseMiddleware from 'redux-promise-middleware';
 import thunkMiddleware from 'redux-thunk';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
+import {setQuery} from './actions/query';
 import App from './components/App';
 import reducers from './reducers/index';
 
@@ -15,6 +16,13 @@ const createStoreWithMiddleware = applyMiddleware(
 )(createStore);
 
 const store = createStoreWithMiddleware(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
+const search = new URL(window.location.href).searchParams;
+const searchObj = {};
+for (const [key, value] of search.entries()) {
+    searchObj[key] = value;
+}
+store.dispatch(setQuery(searchObj));
 
 ReactDOM.render(
     <Provider store={store}>
