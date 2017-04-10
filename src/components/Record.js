@@ -9,13 +9,48 @@ class Record extends Component {
     }
 
     render() {
-        return <div>Record {this.props.match.params.id}</div>
+        if (!this.props.record) return null;
+        const data = this.props.record;
+        const meta = data.metadata;
+        return (
+            <div>
+                <h1>{meta.title}</h1>
+                <h3>{meta.description}</h3>
+                <div>
+                    <h5>Authors</h5>
+                    <ul>
+                        {meta.creators.map(showCreator)}
+                    </ul>
+                </div>
+                <div>
+                    <h4>Table of contents</h4>
+                    <ul>
+                        {data.toc.map(showToc)}
+                    </ul>
+                </div>
+            </div>
+        );
     }
+}
+
+function showCreator(creator) {
+    return (
+        <li key={creator.name}>
+            {creator.name}
+        </li>
+    );
+}
+
+function showToc(toc) {
+    return (
+        <li key={toc.id}>{toc.id}</li>
+    )
 }
 
 function mapStateToProps(state) {
     return {
-        sandbox: !!state.query.sandbox
+        sandbox: !!state.query.sandbox,
+        record: state.record
     };
 }
 
