@@ -44,7 +44,7 @@ function showCreator(creator) {
 function showToc(toc) {
     return (
         <li key={toc.id}>{toc.id}</li>
-    )
+    );
 }
 
 function mapStateToProps(state) {

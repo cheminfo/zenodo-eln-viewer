@@ -1,3 +1,8 @@
+import injectTapEventPlugin from 'react-tap-event-plugin';
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+injectTapEventPlugin();
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
@@ -6,6 +11,7 @@ import promiseMiddleware from 'redux-promise-middleware';
 import thunkMiddleware from 'redux-thunk';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
+import './index.css';
 import {setQuery} from './actions/query';
 import App from './components/App';
 import reducers from './reducers/index';

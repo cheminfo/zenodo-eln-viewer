@@ -1,7 +1,7 @@
 import {createAction} from 'redux-actions';
 import superagent from 'superagent';
 
-import {RECORD_FETCH} from './types';
+import {RECORD_FETCH, RECORDS_QUERY} from './types';
 
 const ZENODO_URL = 'https://zenodo.org/api/';
 const ZENODO_SANDBOX_URL = 'https://sandbox.zenodo.org/api/';
@@ -25,6 +25,12 @@ export const fetchRecord = createAction(RECORD_FETCH, async (id, sandbox) => {
     data.attachments = attachments;
 
     return data;
+});
+
+export const queryRecords = createAction(RECORDS_QUERY, async (sandbox) => {
+    const url = getUrl('records?sort=bestmatch&q=keywords%3Acheminfo&page=1&size=100', sandbox);
+    const data = await superagent.get(url).then(r => r.body);
+    return data.hits.hits;
 });
 
 function getUrl(url, sandbox) {
