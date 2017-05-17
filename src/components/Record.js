@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+
 import Divider from 'material-ui/Divider';
+
+import EntriesToc from './EntriesToc';
 
 import {fetchRecord} from '../actions/record';
 
@@ -24,12 +27,8 @@ class Record extends Component {
                         {meta.creators.map(showCreator)}
                     </ul>
                 </div>
-                <div>
-                    <h4>Table of contents</h4>
-                    <ul>
-                        {data.toc.map(showToc)}
-                    </ul>
-                </div>
+                <Divider />
+                <EntriesToc entries={data.entries} />
             </div>
         );
     }
