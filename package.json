@@ -26,6 +26,7 @@
   "homepage": "https://github.com/cheminfo/zenodo-eln-viewer#readme",
   "dependencies": {
     "material-ui": "^0.18.1",
+    "openchemlib": "^5.2.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",

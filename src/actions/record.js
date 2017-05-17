@@ -14,14 +14,19 @@ export const fetchRecord = createAction(RECORD_FETCH, async (id, sandbox) => {
 
     const attachments = {};
     const bucketUrl = bucket.links.self + '/';
+    const entries = [];
     for (const attachment of bucket.contents) {
         const path = attachment.links.self.replace(bucketUrl, '');
         if (path === 'index.json') {
             data.toc = await superagent.get(attachment.links.self).then(r => r.body);
             continue;
+        } else if (path.endsWith('index.json')) {
+            entries.push(superagent.get(attachment.links.self).then(r => r.body));
+            continue;
         }
         attachments[path] = attachment;
     }
+    data.entries = await Promise.all(entries);
     data.attachments = attachments;
 
     return data;

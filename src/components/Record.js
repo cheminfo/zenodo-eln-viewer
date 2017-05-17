@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import Divider from 'material-ui/Divider';
 
 import {fetchRecord} from '../actions/record';
 
@@ -15,6 +16,7 @@ class Record extends Component {
         return (
             <div>
                 <h1>{meta.title}</h1>
+                <Divider />
                 <h3>{meta.description}</h3>
                 <div>
                     <h5>Authors</h5>
