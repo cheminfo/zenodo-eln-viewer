@@ -14,6 +14,13 @@ class Record extends Component {
 
     render() {
         if (!this.props.record) return null;
+        if (this.props.record.error) {
+            return (
+                <div>
+                    Could not load this record ({this.props.record.error})
+                </div>
+            )
+        }
         const data = this.props.record;
         const meta = data.metadata;
         return (
